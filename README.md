@@ -1,10 +1,8 @@
-
-```
 # 🚀 Personal Portfolio CMS
 
-A modern, responsive, and dynamic **Personal Portfolio Content Management System (CMS)** built with **Laravel 11**, **MySQL**, **Tailwind CSS**, and **Alpine.js**.
+A modern, responsive, and lightweight **Personal Portfolio Content Management System (CMS)** built with **Laravel 11**, **MySQL**, **Tailwind CSS**, and **Alpine.js**.
 
-Designed specifically for Software Engineers and Tech Professionals to showcase their identity, projects, skills, career timeline, certificates, and receive client messages without hardcoding content in Blade views.
+Designed specifically for software engineers and tech professionals to showcase projects, skills, career milestones, verified credentials, and manage client inquiries without hardcoding Blade views.
 
 [![Laravel](https://img.shields.io/badge/Laravel-11.x-FF2D20?style=for-the-badge&logo=laravel&logoColor=white)](https://laravel.com)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3.x_(CDN)-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com)
@@ -14,57 +12,70 @@ Designed specifically for Software Engineers and Tech Professionals to showcase 
 
 ---
 
-## ✨ Features
+## 📌 Table of Contents
 
-- **⚡ Zero-Build Overhead**: Uses Tailwind CSS & Alpine.js via CDN. **No `npm install`, Node.js, or Vite build compilation required!**
-- **🛡️ Secure Admin CMS**: Custom lightweight authentication protecting `/admin` route with session regeneration and rate limiting.
-- **📊 Analytics & Metrics Dashboard**: Real-time summary cards for projects, skills, certificates, and unread incoming messages.
-- **👤 Profile Management**: Edit bio, availability status, headline, avatar, and upload PDF CV/Resume.
-- **🚀 Projects CMS (Case Studies)**: Full CRUD with image upload, many-to-many technology tags, category filtering, start/end date validation, and draft preview for admins.
-- **⚙️ Inline Quick-Add & Safe-Delete**: Manage project categories and technologies on-the-fly directly inside project forms with cascade-delete protection.
-- **⚡ Interactive Skills Matrix**: Group skills by category with interactive percentage sliders and featured badges.
-- **💼 Career & Education Timelines**: Chronological experience and academic records with "Currently Working/Studying" toggles.
-- **📜 Verified Credentials Gallery**: Showcase licenses and certifications with direct verification links and expiration logic.
-- **✉️ Smooth AJAX Contact Form**: Instant form submission powered by Alpine.js Fetch API (zero page reload / zero scroll jump) + direct "Reply via Gmail Compose" button in the admin inbox.
-- **🌐 Dynamic Social Links**: Centrally managed social media links shared across the Hero section and Footer via Laravel View Composers.
-- **🌓 Dark & Light Mode**: Persistent class-based theme switcher with Anti-FOUC (Flash of Unstyled Content) prevention script.
-- **🔍 SEO & Social Share Ready**: Auto-generated dynamic `sitemap.xml` and OpenGraph meta tags for rich social media cards.
-- **📄 Resume Download**: Direct download route (`/resume`) mapped to uploaded CV files.
+- [Key Features](#-key-features)
+- [Tech Stack](#-tech-stack)
+- [Getting Started](#-getting-started)
+- [Default Admin Account](#-default-admin-account)
+- [Route Overview](#-route-overview)
+- [Production Deployment](#-production-deployment)
+- [License](#-license)
+
+---
+
+## ✨ Key Features
+
+- **⚡ Zero-Build Setup**: Runs Tailwind CSS and Alpine.js via CDN. No Node.js, `npm install`, or Vite build step required.
+- **🛡️ Secure Admin Panel**: Session regeneration, rate limiting, and role-based protection on `/admin`.
+- **📊 Real-time Dashboard**: Overview counters for projects, published skills, certificates, and unread inquiries.
+- **👤 Profile & Bio Manager**: Manage personal bio, headline, availability status, avatar, and downloadable PDF resume.
+- **🚀 Projects & Case Studies**: Complete CRUD with cover image upload, many-to-many technology tagging, category filters, and draft preview mode.
+- **⚙️ Dynamic Tagging & Inline Add**: Create categories and tech stack tags directly inside project forms with cascade-delete protection.
+- **⚡ Interactive Skills Matrix**: Categorized skill bars with percentage sliders and featured badges.
+- **💼 Career & Education Timelines**: Chronological career and academic milestones with "Current Role / Study" toggles.
+- **📜 Verified Credentials**: Display licenses and certifications with verification links and expiry state handling.
+- **✉️ Frictionless Contact Form**: AJAX submission powered by Alpine.js Fetch API with a direct "Reply via Gmail" trigger in the admin inbox.
+- **🌐 Centralized Socials**: Social links managed in one place and shared across views via Laravel View Composers.
+- **🌓 Dark / Light Mode**: Persistent theme toggle with inline anti-FOUC script.
+- **🔍 SEO & OpenGraph**: Auto-generated `sitemap.xml` and metadata tags for social media previews.
 
 ---
 
 ## 🛠️ Tech Stack
 
-- **Framework**: [Laravel 11](https://laravel.com)
-- **Database**: [MySQL 8.0+](https://mysql.com)
-- **Styling**: [Tailwind CSS via CDN](https://tailwindcss.com) (with Typography & Forms plugins)
-- **Interactivity**: [Alpine.js via CDN](https://alpinejs.dev)
-- **Templating**: Blade
+| Layer | Technology |
+| :--- | :--- |
+| **Backend Framework** | [Laravel 11](https://laravel.com) |
+| **Database** | [MySQL 8.0+](https://mysql.com) |
+| **UI & Styling** | [Tailwind CSS 3.x (CDN)](https://tailwindcss.com) + Typography & Forms |
+| **Frontend Behavior** | [Alpine.js 3.x (CDN)](https://alpinejs.dev) |
+| **Templating Engine** | Blade |
 
 ---
 
 ## 🚀 Getting Started
 
-Follow these step-by-step instructions to get the application running locally:
+Ensure your local environment meets Laravel 11 requirements (PHP >= 8.2, Composer, MySQL).
 
-### 1. Clone the repository
+### 1. Clone the Repository
 ```bash
 git clone https://github.com/YOUR_USERNAME/portfolio-cms.git
 cd portfolio-cms
 ```
 
-### 2. Install dependencies
+### 2. Install PHP Dependencies
 ```bash
 composer install
 ```
 
-### 3. Environment configuration
-Create your environment file:
+### 3. Environment Configuration
+Duplicate the example environment file:
 ```bash
 cp .env.example .env
 ```
 
-Open `.env` and set your MySQL database credentials:
+Open `.env` and configure your database connection:
 ```env
 DB_CONNECTION=mysql
 DB_HOST=127.0.0.1
@@ -74,84 +85,83 @@ DB_USERNAME=root
 DB_PASSWORD=
 ```
 
-### 4. Generate app key
+### 4. Application Key & Migrations
+Generate the encryption key, run database migrations, and seed starter data:
 ```bash
 php artisan key:generate
-```
-
-### 5. Run database migrations & seeders
-This command runs all migrations, creates default starter data, and sets up the default admin account:
-```bash
 php artisan migrate --seed
 ```
 
-### 6. Create symbolic storage link
-Allows uploaded images, thumbnails, and PDF files to be accessed publicly:
+### 5. Storage Symlink
+Link the public storage folder to make uploaded assets and CVs accessible:
 ```bash
 php artisan storage:link
 ```
 
-### 7. Start development server
+### 6. Run the Application
 ```bash
 php artisan serve
 ```
 
-Visit the website at **`http://127.0.0.1:8000`**.
+Access the portfolio at `http://127.0.0.1:8000`.
 
 ---
 
 ## 🔐 Default Admin Account
 
-Log in to the Admin Panel at **`http://127.0.0.1:8000/login`**:
+Access the management panel at `http://127.0.0.1:8000/login`:
 
-| Field | Default Value |
+| Field | Value |
 | :--- | :--- |
 | **Email** | `admin@example.com` |
 | **Password** | `password` |
 
-> ⚠️ **Important**: Remember to change the admin password and email before deploying to production!
+> ⚠️ **Security Warning**: Change the default email and password immediately before deploying to a public server.
 
 ---
 
 ## 🗺️ Route Overview
 
-### Public Routes
-| Method | URI | Description |
-| :--- | :--- | :--- |
-| `GET` | `/` | Portfolio Homepage |
-| `GET` | `/projects` | Filterable Projects Archive |
-| `GET` | `/projects/{slug}` | Project Case Study Detail Page |
-| `GET` | `/certificates` | Credentials & Certificate Gallery |
-| `POST` | `/contact` | AJAX Contact Form Handler |
-| `GET` | `/resume` | One-Click PDF Resume Download |
-| `GET` | `/sitemap.xml` | Search Engine XML Sitemap |
+### Public Endpoints
 
-### Admin CMS Routes (`/admin`)
 | Method | URI | Description |
 | :--- | :--- | :--- |
-| `GET` | `/admin` | Metrics Dashboard & Inbox Overview |
-| `GET / PUT` | `/admin/profile` | Profile & CV Document CMS |
-| `RESOURCE` | `/admin/projects` | Project Portfolio CRUD |
-| `RESOURCE` | `/admin/skills` | Skills & Tech Stack CRUD |
-| `RESOURCE` | `/admin/experiences` | Career Timeline CRUD |
-| `RESOURCE` | `/admin/educations` | Academic Background CRUD |
-| `RESOURCE` | `/admin/certificates` | Licenses & Certifications CRUD |
-| `RESOURCE` | `/admin/messages` | Inbox Messages & Gmail Reply |
-| `RESOURCE` | `/admin/social-links` | Dynamic Social Links CRUD |
+| `GET` | `/` | Portfolio landing page |
+| `GET` | `/projects` | Filterable project showcase |
+| `GET` | `/projects/{slug}` | Detailed project case study |
+| `GET` | `/certificates` | Credentials and certificate list |
+| `POST` | `/contact` | Async contact form handler |
+| `GET` | `/resume` | One-click CV/resume download |
+| `GET` | `/sitemap.xml` | Search engine XML index |
+
+### Admin Endpoints (`/admin`)
+
+| Method | URI | Description |
+| :--- | :--- | :--- |
+| `GET` | `/admin` | Metrics dashboard and unread inbox |
+| `GET / PUT` | `/admin/profile` | Personal details and resume manager |
+| `RESOURCE` | `/admin/projects` | Project case studies CRUD |
+| `RESOURCE` | `/admin/skills` | Technical skills CRUD |
+| `RESOURCE` | `/admin/experiences` | Professional work history CRUD |
+| `RESOURCE` | `/admin/educations` | Academic background CRUD |
+| `RESOURCE` | `/admin/certificates` | Certifications and licenses CRUD |
+| `RESOURCE` | `/admin/messages` | Inquiries inbox and email replies |
+| `RESOURCE` | `/admin/social-links` | External social profiles CRUD |
 
 ---
 
-## 🚀 Production Deployment Checklist
+## 📦 Production Deployment
 
-When deploying to a live VPS or Shared Hosting server:
+Run these steps when deploying to a VPS or production server:
 
-1. Update `.env`:
+1. **Configure Environment Variables**:
    ```env
    APP_ENV=production
    APP_DEBUG=false
    APP_URL=https://yourdomain.com
    ```
-2. Optimize framework caches:
+
+2. **Optimize Laravel Caching**:
    ```bash
    php artisan config:cache
    php artisan route:cache
@@ -163,5 +173,4 @@ When deploying to a live VPS or Shared Hosting server:
 
 ## 📄 License
 
-This project is licensed under the [MIT License](LICENSE) — feel free to use, modify, and distribute it for personal or commercial projects.
-```
+Distributed under the [MIT License](LICENSE). Open for personal and commercial adaptation.
